@@ -52,7 +52,7 @@ def grey_out(main_window):
         titlebar_background_color="#888888",
         background_color="#888888",
         size=main_window.size,
-        disable_close=True,
+        # disable_close=True,
         location=main_window.current_location(more_accurate=True),
         finalize=True,
     )
@@ -111,10 +111,10 @@ def pdf_gen(p_dict, size):
             )
             if j == pbreak - 1 or i == total_cards - 1:
                 # Draw lines
-                cross = 6
+                cross = 1
                 for cy in range(rows + 1):
                     for cx in range(cols + 1):
-                        draw_cross(pages, rx + w * cx, ry + h * cy)
+                        draw_cross(pages, rx + w * cx, ry + h * cy, cross)
             i += 1
     saving_window = popup("Saving...")
     saving_window.refresh()
@@ -445,17 +445,17 @@ while True:
                 window[k].bind("<Button-3>", "-RIGHT")
 
     if "RENDER" in event:
-        window.disable()
-        grey_window = grey_out(window)
-        render_window = popup("Rendering...")
-        render_window.refresh()
+        # window.disable()
+        # grey_window = grey_out(window)
+        # render_window = popup("Rendering...")
+        # render_window.refresh()
         lookup = {"Letter": letter, "A4": A4, "Legal": legal}
         pdf_gen(print_dict, lookup[print_dict["pagesize"]])
-        render_window.close()
-        grey_window.close()
-        window.enable()
-        window.bring_to_front()
-        window.refresh()
+        # render_window.close()
+        # grey_window.close()
+        # window.enable()
+        # window.bring_to_front()
+        # window.refresh()
 
     if event and print_dict["size"] != window.size:
         print_dict["size"] = window.size
